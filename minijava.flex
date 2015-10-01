@@ -2,7 +2,6 @@
 
 %class LexerMiniJava
 %unicode
-%cup
 %line
 %column
 %standalone
