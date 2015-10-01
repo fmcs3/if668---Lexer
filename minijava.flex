@@ -1,5 +1,3 @@
-import java_cup.runtime.*;
-
 %%
 
 %class LexerMiniJava
