@@ -7,12 +7,6 @@
 %column
 %standalone
 
-/*
-%{
-	StringBuffer string = new StringBuffer();
-%}
-*/
-
 FimLinha = \r|\n|\r\n
 Entrada = [^\r\n]
 EspacoBranco = {FimLinha} | [ \t\f]
@@ -29,14 +23,10 @@ Real = {Inteiro}'.'{Inteiro}+
 %%
 
 /* keywords */
-<YYINITIAL> {
 	/* Inteiro */
-	{Inteiro} 			{ return symbol(sym.INTEGER_LITERAL); }
-	{Real} 				{ return symbol(sym.FLOAT_LITERAL); }
+	{Inteiro} 			{ System.out.println("INTEIRO"); }
+	{Real} 				{ System.out.println("REAL"); }
 
-	/* Achou String */
-	\" 					{ string.setLength(0); yybegin(STRING); }
-	
 	/* Operadores */
 	"=" 				{ System.out.println("EQ"); }
 	"==" 				{ System.out.println("EQEQ"); }
@@ -80,22 +70,12 @@ Real = {Inteiro}'.'{Inteiro}+
     "new"				{ System.out.println("NEW"); }
 
 	/* Id */
-	{Id} 		{ return symbol(sym.IDENTIFIER); }
+	{Id} 		{ System.out.println("IDENTIFIER"); }
 
 	/* Comentarios */
 	{Comentario} 			{ }
 	
 	/* Espaço em Branco */
 	{EspacoBranco} 		{ }
-}
-
-<STRING> {
-	\" 					{ yybegin(YYINITIAL); return symbol(sym.STRING_LITERAL, string.toString()); }
-	[^\n\r\"\\]+ 		{ string.append( yytext() ); }
-	\\t 				{ string.append(’\t’); }
-	\\n 				{ string.append(’\n’); }
-	\\r 				{ string.append(’\r’); }
-	\\ 					{ string.append(’\\’); }
-}			
-
+	
 [^] { throw new Error("PARSE ERROR!!!"); }
