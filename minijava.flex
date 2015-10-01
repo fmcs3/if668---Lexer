@@ -17,9 +17,6 @@ Id = [_a-zA-Z][a-zA-Z0-9_]*
 Inteiro = [1-9][0-9]* | 0
 Real = {Inteiro}'.'{Inteiro}+ 
 
-/* Declarando estado para ler STRING */
-%state STRING
-
 %%
 
 /* keywords */
