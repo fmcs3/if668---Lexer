@@ -73,4 +73,4 @@ Real = {Inteiro}'.'{Inteiro}+
 	/* Id */
 	{Id} 		{ System.out.println("IDENTIFIER"); }
 	
-[^] { throw new Error("PARSE ERROR!!!"); }
+[^] { throw new Error("LEXICAL ERROR!!!"); }
