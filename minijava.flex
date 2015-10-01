@@ -10,7 +10,7 @@ FimLinha = \r|\n|\r\n
 Entrada = [^\r\n]
 EspacoBranco = {FimLinha} | [ \t\f]
 
-Comentario = ("/*" [^*] ~"*/") | ("//" ~ {FimLinha})
+Comentario = "/*" [^*] ~"*/"
 
 Id = [_a-zA-Z][a-zA-Z0-9_]*
 Inteiro = [1-9][0-9]* | 0
