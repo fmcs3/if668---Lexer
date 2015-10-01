@@ -10,7 +10,7 @@ FimLinha = \r|\n|\r\n
 Entrada = [^\r\n]
 EspacoBranco = {FimLinha} | [ \t\f]
 
-Comentario = "/*" [^*] ~"*/"
+Comentario = ("/*" [^*] ~"*/") | ("//" ~ {FimLinha})
 
 Id = [_a-zA-Z][a-zA-Z0-9_]*
 Inteiro = [1-9][0-9]* | 0
@@ -40,7 +40,6 @@ Real = {Inteiro}'.'{Inteiro}+
 	/*Delimitadores*/
 	";"					{ System.out.println("Delimitador"); }
 	"."					{ System.out.println("Delimitador"); }
-	"="					{ System.out.println("Delimitador"); }
 	"("					{ System.out.println("Delimitador"); }
 	")"					{ System.out.println("Delimitador"); }
 	"{"					{ System.out.println("Delimitador"); }
@@ -65,13 +64,13 @@ Real = {Inteiro}'.'{Inteiro}+
     "this"				{ System.out.println("THIS"); }
     "new"				{ System.out.println("NEW"); }
 
-	/* Id */
-	{Id} 		{ System.out.println("IDENTIFIER"); }
-
 	/* Comentarios */
 	{Comentario} 			{ }
 	
 	/* Espaço em Branco */
 	{EspacoBranco} 		{ }
+
+	/* Id */
+	{Id} 		{ System.out.println("IDENTIFIER"); }
 	
 [^] { throw new Error("PARSE ERROR!!!"); }
